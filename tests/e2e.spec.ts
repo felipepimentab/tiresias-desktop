@@ -20,9 +20,9 @@ const test = base.extend<TestFixtures>({
     /**
      * Executable path depends on root package name!
      */
-    let executablePattern = 'dist/*/root{,.*}';
+    let executablePattern = 'dist/*/tiresias{,.*}';
     if (platform === 'darwin') {
-      executablePattern += '/Contents/*/root';
+      executablePattern += '/Contents/*/tiresias';
     }
 
     const [executablePath] = globSync(executablePattern);

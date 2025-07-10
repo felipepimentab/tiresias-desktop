@@ -1,13 +1,12 @@
 {
-  "name": "root",
-  "description": "Secure boilerplate for Electron app based on Vite",
+  "name": "tiresias",
+  "description": "Desktop Companion for the Tiresias hearing aid project",
   "version": "3.1.0",
   "private": true,
   "type": "module",
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "felipe.pbernardo@gmail.com",
+    "name": "Felipe Pimenta Bernardo"
   },
   "main": "packages/entry-point.mjs",
   "workspaces": [
