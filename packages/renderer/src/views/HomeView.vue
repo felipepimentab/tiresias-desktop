@@ -1,7 +1,5 @@
 <template>
   <main>
-    <h1 class="text-5xl">
-      This is the Home View
-    </h1>
+    <h1>Home page</h1>
   </main>
 </template>
