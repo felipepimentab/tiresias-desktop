@@ -10,6 +10,20 @@ import {allowExternalUrls} from './modules/ExternalUrls.js';
 import {bluetoothModule} from './modules/BluetoothModule.js';
 
 
+/**
+ * Initializes the Electron application with the provided configuration.
+ * Sets up all required modules in the correct order, including:
+ * - Window management
+ * - Single instance enforcement
+ * - Application termination behavior
+ * - Hardware acceleration settings
+ * - Auto-updater
+ * - Bluetooth functionality
+ * - Security modules for origin and URL restrictions
+ *
+ * @param initConfig - Configuration for initializing the application
+ * @returns A Promise that resolves when all modules are initialized
+ */
 export async function initApp(initConfig: AppInitConfig) {
   const moduleRunner = createModuleRunner()
     .init(createWindowManagerModule({initConfig, openDevTools: import.meta.env.DEV}))
