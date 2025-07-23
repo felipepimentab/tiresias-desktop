@@ -14,7 +14,8 @@
   "dependencies": {
     "@app/preload": "*",
     "@app/renderer": "*",
-    "electron-updater": "6.6.2"
+    "electron-updater": "6.6.2",
+    "@abandonware/noble": "^1.9.2-23"
   },
   "devDependencies": {
     "@app/electron-versions": "*",
