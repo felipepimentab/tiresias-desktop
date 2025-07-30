@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import MaterialSymbol from './MaterialSymbol.vue';
-import { versions } from '@app/preload';
 
 const copy = {
   text: 'Projeto Tiresias',
@@ -14,21 +13,13 @@ const links = [
     icon: 'folder_code'
   },
 ]
-
-// Get app version from environment or process versions
-const appVersion = import.meta.env.VITE_APP_VERSION || versions?.app || '0.0.0'
 </script>
 
 <template>
   <footer class="bg-white border-t border-gray-200 shadow sm:flex sm:items-center sm:justify-between px-4 py-3 dark:bg-gray-800 dark:border-gray-700 antialiased">
-    <div class="flex flex-col sm:flex-row items-center gap-2">
-      <p class="mb-0 text-sm text-center text-gray-500 dark:text-gray-400">
-          &copy; 2025 - <a :href="copy.link" class="hover:underline" target="_blank">{{ copy.text }}</a>
-      </p>
-      <span class="text-xs px-2 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-        v{{ appVersion }}
-      </span>
-    </div>
+    <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
+        &copy; 2025 - <a :href="copy.link" class="hover:underline" target="_blank">{{ copy.text }}</a>
+    </p>
     <div class="flex justify-center items-center space-x-1">
       <a
         v-for="link in links"

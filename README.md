@@ -2,33 +2,6 @@
 
 Desktop application for the Tiresias Project.
 
-## Versioning and Releases
-
-This project follows [Semantic Versioning](https://semver.org/) for version numbering. For more details about our versioning and release system, please refer to [VERSION.md](VERSION.md).
-
-### Release Process
-
-Releases can be created in two ways:
-
-1. **Automated via CI/CD**: Pushing to the main branch triggers the CI pipeline, which builds and releases the application.
-
-2. **Manual Release**: Use the provided script to prepare a new release:
-
-```sh
-./scripts/release.sh <version> [channel]
-```
-
-Example:
-```sh
-./scripts/release.sh 3.2.0 beta
-```
-
-Alternatively, you can trigger a manual release through the GitHub Actions interface using the "Manual Release" workflow.
-
-### Changelog
-
-All notable changes are documented in the [CHANGELOG.md](CHANGELOG.md) file.
-
 ### NPM Scripts
 
 ```sh

@@ -1,7 +1,7 @@
 {
   "name": "tiresias",
   "description": "Desktop Companion for the Tiresias hearing aid project",
-  "version": "3.2.0",
+  "version": "3.1.0",
   "private": true,
   "type": "module",
   "author": {
@@ -23,9 +23,7 @@
     "typecheck": "npm run typecheck -ws --if-present",
     "create-renderer": "cd packages && node ./integrate-renderer/create-renderer.js",
     "integrate-renderer": "npm start --workspace @app/integrate-renderer",
-    "init": "npm run create-renderer && npm run integrate-renderer && npm install",
-    "set-version": "node scripts/set-version.js",
-    "release": "./scripts/release.sh"
+    "init": "npm run create-renderer && npm run integrate-renderer && npm install"
   },
   "devDependencies": {
     "@npmcli/map-workspaces": "4.0.2",
