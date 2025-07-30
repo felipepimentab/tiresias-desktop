@@ -46,21 +46,3 @@ Executes end-to-end tests on **compiled app** using Playwright.
 npm run typecheck
 ```
 Runs the `typecheck` command in all workspaces if present.
-
----
-```sh
-npm run create-renderer
-```
-Initializes a new Vite project named `renderer`. Basically same as `npm create vite`.
-
----
-```sh
-npm run integrate-renderer
-```
-Starts the integration process of the renderer using the Vite Electron builder.
-
----
-```sh
-npm run init
-```
-Set up the initial environment by creating a new renderer, integrating it, and installing the necessary packages.

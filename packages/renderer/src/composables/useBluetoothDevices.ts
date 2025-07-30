@@ -204,7 +204,7 @@ export function useBluetoothDevices() {
     startUpdatingDevices();
     
     // Listen for device state changes from the service
-    bluetoothService.on('deviceStateChanged', (device) => {
+    bluetoothService.on('deviceStateChanged', (_device) => {
       // Trigger an immediate update when device state changes
       updateDevicesList();
     });
