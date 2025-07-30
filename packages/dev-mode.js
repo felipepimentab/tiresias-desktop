@@ -9,10 +9,17 @@ import path from 'path';
 
 /**
  * 1. We create a few flags to let everyone know that we are in development mode.
+ * We also read the version from package.json to make it available to the renderer.
  */
+import fs from 'fs';
+
 const mode = 'development';
 process.env.NODE_ENV = mode;
 process.env.MODE = mode;
+
+// Read version from package.json and set it as an environment variable
+const packageJson = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf8'));
+process.env.VITE_APP_VERSION = packageJson.version;
 
 
 /**
