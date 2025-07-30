@@ -4,7 +4,10 @@
  * Version management script for Tiresias Desktop
  *
  * This script handles version bumping according to semantic versioning rules.
- * Usage: node scripts/version.js [major|minor|patch|alpha|beta|rc] [optional-identifier]
+ * It automatically detects CI environments (GitHub Actions) and skips Git operations when running in CI.
+ * 
+ * Usage: node scripts/version.js [bump-type] [prerelease-type] [prerelease-number] [--dry-run]
+ * 
  * Examples:
  *   node scripts/version.js patch         # 0.1.0 -> 0.1.1
  *   node scripts/version.js minor         # 0.1.0 -> 0.2.0
@@ -12,6 +15,8 @@
  *   node scripts/version.js alpha         # 0.1.0 -> 0.1.0-alpha
  *   node scripts/version.js alpha 1       # 0.1.0 -> 0.1.0-alpha.1
  *   node scripts/version.js beta 2        # 0.1.0 -> 0.1.0-beta.2
+ *   node scripts/version.js patch alpha   # 0.1.0 -> 0.1.1-alpha
+ *   node scripts/version.js minor beta    # 0.1.0 -> 0.2.0-beta
  */
 
 import fs from 'fs';
@@ -130,21 +135,28 @@ rendererPackageJson.version = newVersion;
 fs.writeFileSync(rendererPackageJsonPath, JSON.stringify(rendererPackageJson, null, 2) + '\n');
 console.log(`Updated version in packages/renderer/package.json to ${newVersion}`);
 
-// Create version commit and tag
-try {
-  // Stage package.json files
-  execSync('git add package.json packages/renderer/package.json', { stdio: 'inherit' });
-  
-  // Commit with version message
-  execSync(`git commit -m "chore: bump version to ${newVersion}"`, { stdio: 'inherit' });
-  
-  // Create version tag
-  execSync(`git tag v${newVersion}`, { stdio: 'inherit' });
-  
-  console.log(`\n✅ Version bumped to ${newVersion}`);
-  console.log('\nTo push the changes and tag:');
-  console.log('  git push && git push --tags');
-} catch (error) {
-  console.error('\n❌ Error creating version commit:', error.message);
-  process.exit(1);
+// Check if running in CI environment
+const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
+
+// Only perform Git operations if not in CI
+if (!isCI) {
+  try {
+    // Stage package.json files
+    execSync('git add package.json packages/renderer/package.json', { stdio: 'inherit' });
+    
+    // Commit with version message
+    execSync(`git commit -m "chore: bump version to ${newVersion}"`, { stdio: 'inherit' });
+    
+    // Create version tag
+    execSync(`git tag v${newVersion}`, { stdio: 'inherit' });
+    
+    console.log(`\n✅ Version bumped to ${newVersion}`);
+    console.log('\nTo push the changes and tag:');
+    console.log('  git push && git push --tags');
+  } catch (error) {
+    console.error('\n❌ Error creating version commit:', error.message);
+    process.exit(1);
+  }
+} else {
+  console.log(`\n✅ Version bumped to ${newVersion} (Git operations skipped in CI environment)`);
 }

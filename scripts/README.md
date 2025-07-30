@@ -63,11 +63,23 @@ node scripts/version.js patch alpha --dry-run
 
 1. Updates the version in the main `package.json`
 2. Updates the version in `packages/renderer/package.json`
-3. Creates a Git commit with the version change
-4. Creates a Git tag for the new version
+3. Creates a Git commit with the version change (skipped in CI environments)
+4. Creates a Git tag for the new version (skipped in CI environments)
 
-After running the script, you can push the changes and tag with:
+#### CI Environment Behavior
+
+When running in CI environments (like GitHub Actions), the script automatically detects this and skips Git operations (commit and tag creation). This prevents errors related to Git user configuration in CI pipelines.
+
+#### Local Development
+
+When running locally, after executing the script, you can push the changes and tag with:
 
 ```bash
 git push && git push --tags
+```
+
+Or use the provided npm script:
+
+```bash
+npm run release
 ```
