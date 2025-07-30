@@ -23,7 +23,9 @@
     "typecheck": "npm run typecheck -ws --if-present",
     "create-renderer": "cd packages && node ./integrate-renderer/create-renderer.js",
     "integrate-renderer": "npm start --workspace @app/integrate-renderer",
-    "init": "npm run create-renderer && npm run integrate-renderer && npm install"
+    "init": "npm run create-renderer && npm run integrate-renderer && npm install",
+    "set-version": "node scripts/set-version.js",
+    "release": "./scripts/release.sh"
   },
   "devDependencies": {
     "@npmcli/map-workspaces": "4.0.2",

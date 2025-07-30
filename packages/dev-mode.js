@@ -9,10 +9,17 @@ import path from 'path';
 
 /**
  * 1. We create a few flags to let everyone know that we are in development mode.
+ * We also set the app version from package.json for development.
  */
 const mode = 'development';
 process.env.NODE_ENV = mode;
 process.env.MODE = mode;
+
+// Get the version from package.json for development
+const packageJson = JSON.parse(await import('fs').then(fs => 
+  fs.promises.readFile(new URL('../package.json', import.meta.url), 'utf8')
+));
+process.env.VITE_APP_VERSION = packageJson.version;
 
 
 /**
