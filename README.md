@@ -33,7 +33,7 @@ The Tiresias Project is an innovative effort to create an open-source and access
 
 1. Clone this repository:
    ```sh
-   git clone https://github.com/yourusername/tiresias-desktop.git
+   git clone https://github.com/felipepimentab/tiresias-desktop.git
    cd tiresias-desktop
    ```
 
