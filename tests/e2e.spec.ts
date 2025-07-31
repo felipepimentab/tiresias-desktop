@@ -97,27 +97,7 @@ test('Main window state', async ({electronApp, page}) => {
   expect(windowState.isDevToolsOpened, 'The DevTools panel was open').toEqual(false);
 });
 
-test.describe('Main window web content', async () => {
-
-  test('The main window has an interactive button', async ({page}) => {
-    const element = page.getByRole('button');
-    await expect(element).toBeVisible();
-    await expect(element).toHaveText('count is 0');
-    await element.click();
-    await expect(element).toHaveText('count is 1');
-  });
-
-  test('The main window has a vite logo', async ({page}) => {
-    const element = page.getByAltText('Vite logo');
-    await expect(element).toBeVisible();
-    await expect(element).toHaveRole('img');
-    const imgState = await element.evaluate((img: HTMLImageElement) => img.complete);
-    const imgNaturalWidth = await element.evaluate((img: HTMLImageElement) => img.naturalWidth);
-
-    expect(imgState).toEqual(true);
-    expect(imgNaturalWidth).toBeGreaterThan(0);
-  });
-});
+// Main window web content tests removed as they were related to default components
 
 test.describe('Preload context should be exposed', async () => {
   test.describe(`versions should be exposed`, async () => {
