@@ -26,7 +26,7 @@ The Tiresias Project is an innovative effort to create an open-source and access
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 23.0.0 or higher)
+- [Node.js](https://nodejs.org/) (version 24.4.1 or higher)
 - npm (comes with Node.js)
 
 ### Installation
