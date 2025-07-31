@@ -41,7 +41,10 @@ const links = [
                 :fill="$route.path === link.to"
                 class="text-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
               />
-              <span class="ms-3">
+              <span
+                :class="{'font-bold': $route.path === link.to}"
+                class="ms-3"
+              >
                 {{ link.name }}
               </span>
             </router-link>
