@@ -1,47 +1,46 @@
 # Tiresias Desktop Companion
 
-Desktop application for the Tiresias Project.
+![Tiresias Desktop Companion](./assets/screenshot.jpg)
 
-## Version Management
+## 📱 Introduction
 
-This project uses semantic versioning. You can use the version script to bump the version:
+Welcome to the Tiresias Desktop Companion! This application is part of the Tiresias Project, a Brazilian research initiative conducted at EESC-USP (São Carlos School of Engineering at the University of São Paulo) by MSc students. The goal of the Tiresias Project is to develop a free and open-source national technology for hearing aid applications using off-the-shelf components.
 
-```sh
-npm run version [bump-type] [prerelease-type] [prerelease-number] [--dry-run]
-```
+This desktop application allows you to connect to and manage Tiresias hearing aid devices via Bluetooth Low Energy (BLE).
 
-Where:
-- `[bump-type]`: One of: major, minor, patch, alpha, beta, rc
-- `[prerelease-type]`: Optional: alpha, beta, or rc (only when used with major, minor, patch)
-- `[prerelease-number]`: Optional: a number to append to the prerelease tag
-- `--dry-run`: Show what would be done without making changes
+## 🎯 Project Overview
 
-Examples:
-```sh
-# Bump patch version (0.1.0 -> 0.1.1)
-npm run version patch
+### About the Tiresias Project
 
-# Bump patch version and add alpha tag (0.1.0 -> 0.1.1-alpha)
-npm run version patch alpha
+The Tiresias Project is an innovative effort to create an open-source and accessible hearing aid solution tailored to the needs of the Brazilian population. Our aim is to reduce dependency on expensive proprietary technologies by leveraging widely available components and state-of-the-art design practices.
 
-# Preview changes without applying them
-npm run version patch alpha --dry-run
-```
+### Key Features
 
-### CI/CD Integration
+- **Connectivity**: Utilizes Bluetooth Low Energy (BLE) for seamless wireless communication with Tiresias hearing aid devices
+- **Device Management**: Scan, connect, and manage your Tiresias hearing aid devices
+- **User-Friendly Interface**: Simple and intuitive interface for all users
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Open-Source**: All code is open-source, allowing for community collaboration and transparency
 
-The version script automatically detects CI environments (like GitHub Actions) and skips Git operations when running in CI. This prevents errors related to Git user configuration in CI pipelines.
+## 🚀 Getting Started
 
-In CI workflows, the version is managed by the GitHub Actions workflow, which sets the version based on the distribution channel and commit timestamp.
+### Prerequisites
 
-For more details, see the [scripts README](./scripts/README.md).
+- [Node.js](https://nodejs.org/) (version 23.0.0 or higher)
+- npm (comes with Node.js)
 
-### NPM Scripts
+### Installation
 
-```sh
-npm install
-```
-Install dependencies
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/yourusername/tiresias-desktop.git
+   cd tiresias-desktop
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
 #### Linux System Dependencies
 
@@ -51,40 +50,64 @@ On Linux systems, you'll need to install the `libudev-dev` package before runnin
 sudo apt-get update && sudo apt-get install -y libudev-dev
 ```
 
+### Running the Application
+
+Start the application in development mode with hot-reload:
+
 ```sh
 npm start
 ```
-Start application in development more with hot-reload.
 
----
+## 🛠️ Development
+
+### Available Scripts
+
 ```sh
 npm run build
 ```
 Runs the `build` command in all workspaces if present.
 
----
 ```sh
 npm run compile
 ```
-First runs the `build` script,
-then compiles the project into executable using `electron-builder` with the specified configuration.
+First runs the `build` script, then compiles the project into an executable using `electron-builder` with the specified configuration.
 
----
 ```sh
 npm run compile -- --dir -c.asar=false
 ```
-Same as `npm run compile` but pass to `electron-builder` additional parameters to disable asar archive and installer
-creating.
-Useful for debugging compiled application.
+Same as `npm run compile` but passes additional parameters to `electron-builder` to disable asar archive and installer creation. Useful for debugging the compiled application.
 
----
 ```sh
 npm run test
 ```
-Executes end-to-end tests on **compiled app** using Playwright.
+Executes end-to-end tests on the **compiled app** using Playwright.
 
----
 ```sh
 npm run typecheck
 ```
 Runs the `typecheck` command in all workspaces if present.
+
+## 📚 Project Structure
+
+The project uses a workspace-based structure:
+
+- `packages/main`: Electron main process code
+- `packages/preload`: Preload scripts for secure renderer-to-main communication
+- `packages/renderer`: Vue.js-based UI application
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📮 Acknowledgments
+
+- EESC-USP: For providing the infrastructure and support for this research
+- The Tiresias Project team: For their work on the hearing aid hardware and firmware
+
+## 📞 Contact
+
+For more information about the Tiresias Project, visit [the documentation website](https://tiresias-docs.vercel.app).
