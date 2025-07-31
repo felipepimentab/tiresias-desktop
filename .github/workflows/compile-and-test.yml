@@ -3,11 +3,6 @@ name: Compile and test
 on:
   workflow_call:
     inputs:
-      renderer-template:
-        description: Define what vite template should be used to create renderer in case if renderer package doesn't exist
-        required: false
-        type: string
-        default: ''
       app-version:
         required: true
         type: string
@@ -35,10 +30,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/init-template-with-renderer
-        name: Setup boilerplate
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          renderer-template: ${{inputs.renderer-template}}
+          node-version: 'latest'
+      - name: Install dependencies
+        run: npm ci
       - run: npm run typecheck --if-present
 
   compile:
@@ -52,10 +49,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/init-template-with-renderer
-        name: Setup boilerplate
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          renderer-template: ${{inputs.renderer-template}}
+          node-version: 'latest'
+      - name: Install dependencies
+        run: npm ci
 
       - run: npm version "${{inputs.app-version}}" --no-git-tag-version
       - run: npm run compile -- -p never

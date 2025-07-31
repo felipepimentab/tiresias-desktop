@@ -13,11 +13,6 @@ on:
         description: Distribution channel for release. It can be `beta`, `alpha` or any string.
         type: string
         required: true
-      renderer-template:
-        description: Define what vite template should be used to create renderer in case if renderer package doesn't exist
-        required: false
-        type: string
-        default: ''
 
 concurrency:
   group: ${{github.workflow}}-${{ github.ref }}-${{inputs.distribution-channel}}
@@ -58,7 +53,6 @@ jobs:
       attestations: write
     uses: ./.github/workflows/compile-and-test.yml
     with:
-      renderer-template: ${{ inputs.renderer-template }}
       app-version: ${{ needs.prepare.outputs.APP_FULL_VERSION }}
       distribution-channel: ${{inputs.distribution-channel}}
 
@@ -71,5 +65,5 @@ jobs:
       - compile-and-test
     uses: ./.github/workflows/deploy.yml
     with:
-      distribution-channel: ${{ inputs.renderer-template }}
+      distribution-channel: ${{inputs.distribution-channel}}
       app-version: ${{ needs.prepare.outputs.APP_FULL_VERSION }}

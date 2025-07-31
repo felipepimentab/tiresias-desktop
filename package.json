@@ -21,9 +21,6 @@
     "test": "npx playwright test ./tests/e2e.spec.ts",
     "start": "node packages/dev-mode.js",
     "typecheck": "npm run typecheck -ws --if-present",
-    "create-renderer": "cd packages && node ./integrate-renderer/create-renderer.js",
-    "integrate-renderer": "npm start --workspace @app/integrate-renderer",
-    "init": "npm run create-renderer && npm run integrate-renderer && npm install",
     "version": "node scripts/version.js",
     "release": "git push && git push --tags"
   },
