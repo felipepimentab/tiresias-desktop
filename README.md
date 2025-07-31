@@ -43,6 +43,14 @@ npm install
 ```
 Install dependencies
 
+#### Linux System Dependencies
+
+On Linux systems, you'll need to install the `libudev-dev` package before running `npm install` to compile the USB module used for Bluetooth functionality:
+
+```sh
+sudo apt-get update && sudo apt-get install -y libudev-dev
+```
+
 ```sh
 npm start
 ```
