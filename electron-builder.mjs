@@ -5,6 +5,7 @@ import {pathToFileURL} from 'node:url';
 
 export default /** @type import('electron-builder').Configuration */
 ({
+  productName: 'tiresias',
   directories: {
     output: 'dist',
     buildResources: 'buildResources',
