@@ -56,13 +56,16 @@ interface BluetoothResponse {
  * - Bluetooth adapter state monitoring
  */
 export class BluetoothModule implements AppModule {
-  /** Reference to the main application window for sending events */
+  /** Reference to the main window for sending events */
   private mainWindow: BrowserWindow | null = null;
   
-  /** Map of discovered devices by their ID */
+  /** Map of discovered devices indexed by device ID */
   private devices: Map<string, BluetoothDevice> = new Map();
   
-  /** Flag indicating if device scanning is currently active */
+  /** Map of Noble Peripheral objects indexed by device ID */
+  private peripherals: Map<string, Peripheral> = new Map();
+  
+  /** Current scanning state */
   private isScanning: boolean = false;
 
   /**
@@ -132,6 +135,9 @@ export class BluetoothModule implements AppModule {
       
       // Store device in our map
       this.devices.set(peripheral.id, device);
+      
+      // Store the peripheral object for connection operations
+      this.peripherals.set(peripheral.id, peripheral);
       
       // Notify renderer of new device discovery
       if (this.mainWindow) {
@@ -219,7 +225,7 @@ export class BluetoothModule implements AppModule {
     // Handler for connecting to a BLE device
     ipcMain.handle('bluetooth:connect', async (_, deviceId: string): Promise<BluetoothResponse> => {
       try {
-        const peripheral = noble.peripherals[deviceId];
+        const peripheral = this.peripherals.get(deviceId);
         
         // Check if device exists
         if (!peripheral) {
@@ -291,7 +297,7 @@ export class BluetoothModule implements AppModule {
     // Handler for disconnecting from a BLE device
     ipcMain.handle('bluetooth:disconnect', async (_, deviceId: string): Promise<BluetoothResponse> => {
       try {
-        const peripheral = noble.peripherals[deviceId];
+        const peripheral = this.peripherals.get(deviceId);
         
         // Check if device exists
         if (!peripheral) {
