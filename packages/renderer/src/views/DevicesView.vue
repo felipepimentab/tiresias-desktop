@@ -26,9 +26,6 @@ const {
       <h1 class="text-2xl font-bold mb-4">Dispositivos Bluetooth</h1>
       <p class="mb-4">Conecte-se a aparelhos auditivos e outros dispositivos Bluetooth.</p>
       
-      <!-- Bluetooth status -->
-      <BluetoothStatus :bluetooth-state="bluetoothState" />
-      
       <!-- Scan controls -->
       <ScanControls 
         :is-scanning="isScanning" 
@@ -39,17 +36,7 @@ const {
       
       <!-- Error message -->
       <ScanError :error="scanError" />
-      
-      <!-- Bluetooth state warning -->
-      <div v-if="bluetoothState !== 'poweredOn'" class="p-4 mb-6 bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 rounded-lg">
-        <div class="flex items-center gap-2">
-          <MaterialSymbol icon="bluetooth_disabled" />
-          <span>
-            Bluetooth {{ bluetoothState === 'poweredOff' ? 'está desativado' : 'não está pronto' }}. 
-            Por favor, ative o Bluetooth no seu sistema para continuar.
-          </span>
-        </div>
-      </div>
+
     </div>
     
     <!-- Devices list -->
@@ -66,20 +53,6 @@ const {
           @disconnect="disconnectFromDevice"
         />
       </div>
-    </div>
-    
-    <!-- Help section -->
-    <div class="mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-      <h3 class="font-medium mb-2 flex items-center gap-2">
-        <MaterialSymbol icon="help" />
-        <span>Dicas para conexão</span>
-      </h3>
-      <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-        <li>Certifique-se de que o dispositivo esteja próximo e com bateria suficiente</li>
-        <li>Coloque o dispositivo em modo de pareamento antes de iniciar a busca</li>
-        <li>Alguns dispositivos podem exigir um código de pareamento</li>
-        <li>Se tiver problemas, tente reiniciar o dispositivo e o aplicativo</li>
-      </ul>
     </div>
   </main>
 </template>
