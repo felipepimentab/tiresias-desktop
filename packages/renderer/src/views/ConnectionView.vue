@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { useBluetoothDevices } from '../composables/useBluetoothDevices';
 import ScanControls from '../components/bluetooth/ScanControls.vue';
-import BluetoothStatus from '../components/bluetooth/BluetoothStatus.vue';
 import ScanError from '../components/bluetooth/ScanError.vue';
 import DeviceList from '../components/bluetooth/DeviceList.vue';
-import MaterialSymbol from '../components/MaterialSymbol.vue';
 
 // Use the Bluetooth devices composable
 const {

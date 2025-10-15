@@ -1,7 +1,8 @@
 import { createMemoryHistory, createRouter } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import DevicesView from "../views/DevicesView.vue";
+import ConnectionView from "../views/ConnectionView.vue";
 import SettingsView from "../views/SettingsView.vue";
+import DeviceView from "../views/DeviceView.vue";
 
 const routes = [
   {
@@ -13,8 +14,12 @@ const routes = [
     component: SettingsView,
   },
   {
-    path: '/devices',
-    component: DevicesView,
+    path: '/connection',
+    component: ConnectionView,
+  },
+  {
+    path: '/device',
+    component: DeviceView,
   },
 ];
 

@@ -8,9 +8,14 @@ const links = [
     to: '/',
   },
   {
+    icon: 'bluetooth',
+    name: 'Conexão',
+    to: '/connection',
+  },
+  {
     icon: 'devices',
-    name: 'Dispositivos',
-    to: '/devices',
+    name: 'Dispositivo',
+    to: '/device',
   },
   {
     icon: 'settings',
